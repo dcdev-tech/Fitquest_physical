@@ -2,6 +2,10 @@
 
 from typing import Dict, List
 
+AGE_GROUP_ALIASES = {
+    "9-14": "10-13",
+}
+
 AGE_GROUPS: Dict[str, Dict[str, object]] = {
     "2-5": {
         "min_age": 2,
@@ -50,6 +54,10 @@ ACTIVITY_DURATION_SECONDS: Dict[str, int] = {
 DEFAULT_MAX_SCORE = 20
 
 
+def canonical_age_group(age_group: str) -> str:
+    return AGE_GROUP_ALIASES.get(age_group, age_group)
+
+
 def age_group_for_age(age: int) -> str:
     for group, spec in AGE_GROUPS.items():
         if int(spec["min_age"]) <= age <= int(spec["max_age"]):
@@ -58,17 +66,20 @@ def age_group_for_age(age: int) -> str:
 
 
 def activities_for_group(age_group: str) -> List[str]:
+    age_group = canonical_age_group(age_group)
     if age_group not in AGE_GROUPS:
         raise ValueError(f"Unsupported age group: {age_group}")
     return list(AGE_GROUPS[age_group]["activities"])
 
 
 def validate_activity_for_group(age_group: str, activity: str) -> None:
+    age_group = canonical_age_group(age_group)
     if activity not in activities_for_group(age_group):
         raise ValueError(f"Activity '{activity}' is not allowed for age group '{age_group}'.")
 
 
 def validate_age_in_group(age_group: str, age: int) -> None:
+    age_group = canonical_age_group(age_group)
     if age_group not in AGE_GROUPS:
         raise ValueError(f"Unsupported age group: {age_group}")
     spec = AGE_GROUPS[age_group]

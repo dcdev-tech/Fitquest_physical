@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import traceback
 import uuid
 from datetime import datetime
@@ -16,19 +17,43 @@ from .config import (
     ACTIVITY_DURATION_SECONDS,
     ACTIVITY_LABELS,
     activities_for_group,
+    canonical_age_group,
     validate_age_in_group,
     validate_activity_for_group,
 )
+from .assessment_metrics import DUAL_TRIAL_ACTIVITIES, build_assessment_metrics
 from .schemas import AnalyzeResponse
 from .csv_results import read_latest_csv_row
 from .scoring import score_activity_video
-from .storage import append_score_record, extract_calculation_variables, persist_record_to_mongodb
+from .storage import (
+    append_score_record,
+    initialize_mongodb_schema,
+    mongo_connection_status,
+    persist_record_to_mongodb,
+)
 from .logging_utils import get_activity_logger
 from .progress import get_progress, initialize_progress, set_progress_message
 from activity_common.video_base import read_video_stats
 
 app = FastAPI(title="Child Activity Assessment API", version="1.0.0")
 logger = get_activity_logger()
+
+
+@app.on_event("startup")
+def startup_initialize_services() -> None:
+    mongo_status = initialize_mongodb_schema()
+    if mongo_status.get("ok"):
+        logger.info(
+            "MONGO_SCHEMA_INIT_OK | db=%s | created=%s",
+            mongo_status.get("db"),
+            ",".join(mongo_status.get("created_collections", [])) or "none",
+        )
+    else:
+        logger.warning(
+            "MONGO_SCHEMA_INIT_SKIPPED | db=%s | error=%s",
+            mongo_status.get("db"),
+            mongo_status.get("error"),
+        )
 
 
 class FrontendLogEvent(BaseModel):
@@ -46,7 +71,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-UPLOAD_ROOT = Path("common_backend") / "uploads"
+UPLOAD_ROOT = Path(os.getenv("UPLOAD_ROOT", str(Path("common_backend") / "uploads")))
 UPLOAD_ROOT.mkdir(parents=True, exist_ok=True)
 
 
@@ -57,7 +82,12 @@ def root() -> RedirectResponse:
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "ok"}
+    mongo_status = mongo_connection_status()
+    overall_ok = bool(mongo_status.get("ok") or not mongo_status.get("configured"))
+    return {
+        "status": "ok" if overall_ok else "degraded",
+        "mongo": mongo_status,
+    }
 
 
 @app.get("/metadata")
@@ -99,8 +129,12 @@ async def analyze(
     activity: str = Form(...),
     gender: str = Form("male"),
     jumped_length: float | None = Form(None),
+    jumped_length_2: float | None = Form(None),
+    landing_stability: int | None = Form(None),
+    landing_stability_2: int | None = Form(None),
     request_id: str | None = Form(None),
     file: UploadFile = File(...),
+    file_2: UploadFile | None = File(None),
 ) -> AnalyzeResponse:
     return await _analyze_internal(
         name=name,
@@ -109,8 +143,12 @@ async def analyze(
         activity=activity,
         gender=gender,
         jumped_length=jumped_length,
+        jumped_length_2=jumped_length_2,
+        landing_stability=landing_stability,
+        landing_stability_2=landing_stability_2,
         request_id=request_id,
         file=file,
+        file_2=file_2,
     )
 
 
@@ -122,8 +160,12 @@ async def analyze_by_activity(
     age_group: str = Form(...),
     gender: str = Form("male"),
     jumped_length: float | None = Form(None),
+    jumped_length_2: float | None = Form(None),
+    landing_stability: int | None = Form(None),
+    landing_stability_2: int | None = Form(None),
     request_id: str | None = Form(None),
     file: UploadFile = File(...),
+    file_2: UploadFile | None = File(None),
 ) -> AnalyzeResponse:
     return await _analyze_internal(
         name=name,
@@ -132,8 +174,12 @@ async def analyze_by_activity(
         activity=activity_name,
         gender=gender,
         jumped_length=jumped_length,
+        jumped_length_2=jumped_length_2,
+        landing_stability=landing_stability,
+        landing_stability_2=landing_stability_2,
         request_id=request_id,
         file=file,
+        file_2=file_2,
     )
 
 
@@ -145,6 +191,54 @@ def analyze_progress(request_id: str) -> dict:
     return progress
 
 
+async def _read_upload_content(upload: UploadFile, label: str) -> bytes:
+    try:
+        content = await upload.read()
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"Failed to read {label}: {exc}") from exc
+    if not content:
+        raise HTTPException(status_code=400, detail=f"Uploaded {label} is empty.")
+    return content
+
+
+def _save_upload_content(*, content: bytes, file_name: str, target_dir: Path, name: str, suffix: str) -> Path:
+    ext = Path(file_name).suffix.lower()
+    if ext not in {".mp4", ".mov", ".avi", ".mkv", ".webm"}:
+        raise HTTPException(status_code=400, detail=f"Unsupported video format for {file_name}.")
+    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    safe_name = "_".join(name.strip().split())
+    out_path = target_dir / f"{timestamp}_{safe_name}_{suffix}_{uuid.uuid4().hex[:8]}{ext}"
+    try:
+        out_path.write_bytes(content)
+    except OSError as exc:
+        raise HTTPException(status_code=500, detail=f"Failed to save uploaded video: {exc}") from exc
+    return out_path
+
+
+def _candidate_label(candidate_id: str, index: int) -> str:
+    return f"{candidate_id}T{index + 1}"
+
+
+def _build_csv_result_payload(
+    *,
+    activity: str,
+    trial_csv_results: list[dict | None],
+    jumped_lengths: list[float | None],
+) -> dict | None:
+    usable = [item for item in trial_csv_results if isinstance(item, dict)]
+    if not usable:
+        return None
+    if activity != "long_jump":
+        return usable[0]
+    best_index = 0
+    numeric_distances = [float(value or 0.0) for value in jumped_lengths]
+    if numeric_distances:
+        best_index = max(range(len(numeric_distances)), key=lambda idx: numeric_distances[idx])
+    if best_index < len(trial_csv_results) and isinstance(trial_csv_results[best_index], dict):
+        return trial_csv_results[best_index]
+    return usable[0]
+
+
 async def _analyze_internal(
     name: str,
     age: int,
@@ -152,8 +246,12 @@ async def _analyze_internal(
     activity: str,
     gender: str,
     jumped_length: float | None,
+    jumped_length_2: float | None,
+    landing_stability: int | None,
+    landing_stability_2: int | None,
     request_id: str | None,
     file: UploadFile,
+    file_2: UploadFile | None,
 ) -> AnalyzeResponse:
     try:
         if not name.strip():
@@ -165,6 +263,7 @@ async def _analyze_internal(
             age,
             name.strip(),
         )
+        age_group = canonical_age_group(age_group)
 
         try:
             validate_age_in_group(age_group, age)
@@ -176,74 +275,131 @@ async def _analyze_internal(
         if activity == "long_jump" and jumped_length is None:
             raise HTTPException(
                 status_code=400,
-                detail="Jumped distance is required for long jump.",
+                detail="Trial 1 jumped distance is required for long jump.",
             )
 
         if not file.filename:
             raise HTTPException(status_code=400, detail="Video file name is missing.")
 
-        ext = Path(file.filename).suffix.lower()
-        if ext not in {".mp4", ".mov", ".avi", ".mkv", ".webm"}:
-            raise HTTPException(status_code=400, detail="Unsupported video format.")
-
         target_dir = UPLOAD_ROOT / age_group / activity
         target_dir.mkdir(parents=True, exist_ok=True)
 
-        timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-        safe_name = "_".join(name.strip().split())
-        out_path = target_dir / f"{timestamp}_{safe_name}_{uuid.uuid4().hex[:8]}{ext}"
-
-        try:
-            content = await file.read()
-        except Exception as exc:
-            raise HTTPException(status_code=400, detail=f"Failed to read uploaded video: {exc}") from exc
-        if not content:
-            raise HTTPException(status_code=400, detail="Uploaded video is empty.")
-        try:
-            out_path.write_bytes(content)
-        except OSError as exc:
-            raise HTTPException(status_code=500, detail=f"Failed to save uploaded video: {exc}") from exc
-        logger.info("VIDEO_SAVED | activity=%s | video_path=%s", activity, out_path)
-
         resolved_request_id = request_id or uuid.uuid4().hex
-        try:
-            video_stats = read_video_stats(str(out_path))
-            frame_count = int(video_stats.frame_count)
-        except Exception:
-            frame_count = 0
+        primary_content = await _read_upload_content(file, "video")
+        secondary_content = None
+        if file_2 and file_2.filename:
+            secondary_content = await _read_upload_content(file_2, "second video")
+        elif activity in DUAL_TRIAL_ACTIVITIES:
+            secondary_content = primary_content
+
+        uploads: list[tuple[UploadFile, bytes]] = [(file, primary_content)]
+        if secondary_content is not None:
+            uploads.append((file_2 or file, secondary_content))
+
+        out_paths: list[Path] = []
+        frame_counts: list[int] = []
+        mongo_video_uploads: list[dict[str, object]] = []
+        for index, (upload_obj, content) in enumerate(uploads):
+            out_path = _save_upload_content(
+                content=content,
+                file_name=upload_obj.filename or file.filename,
+                target_dir=target_dir,
+                name=name,
+                suffix=f"trial{index + 1}",
+            )
+            out_paths.append(out_path)
+            logger.info("VIDEO_SAVED | activity=%s | trial=%s | video_path=%s", activity, index + 1, out_path)
+            mongo_video_uploads.append(
+                {
+                    "trial_no": index + 1,
+                    "filename": upload_obj.filename or file.filename,
+                    "content_type": upload_obj.content_type or "application/octet-stream",
+                    "content": content,
+                    "video_path": str(out_path),
+                }
+            )
+            try:
+                video_stats = read_video_stats(str(out_path))
+                frame_counts.append(int(video_stats.frame_count))
+            except Exception:
+                frame_counts.append(0)
+
         pass_multiplier = 2 if activity == "shuttle_run" else 1
         initialize_progress(
             request_id=resolved_request_id,
             activity=activity,
-            video_path=str(out_path),
-            total_frames=frame_count,
-            expected_reads=max(1, frame_count * pass_multiplier),
+            video_path=str(out_paths[0]),
+            total_frames=sum(frame_counts),
+            expected_reads=max(1, sum(frame_counts) * pass_multiplier),
         )
         set_progress_message(resolved_request_id, "Video uploaded. Starting analysis", status="processing")
 
         candidate_id = f"DC{uuid.uuid4().hex[:8].upper()}"
-        try:
-            result = await asyncio.to_thread(
-                score_activity_video,
-                activity=activity,
-                video_path=out_path,
-                age_group=age_group,
-                candidate_id=candidate_id,
-                candidate_name=name.strip(),
-                age=age,
-                gender=gender,
-                jumped_length=jumped_length,
-                progress_request_id=resolved_request_id,
+        jumped_lengths = [jumped_length]
+        landing_stabilities = [landing_stability]
+        if len(out_paths) > 1:
+            jumped_lengths.append(jumped_length_2 if jumped_length_2 is not None else jumped_length)
+            landing_stabilities.append(
+                landing_stability_2 if landing_stability_2 is not None else landing_stability
             )
-        except ValueError as exc:
-            raise HTTPException(status_code=400, detail=str(exc)) from exc
-        logger.info(
-            "SCORING_DONE | activity=%s | candidate_id=%s | score=%s | category=%s",
-            activity,
-            candidate_id,
-            result.score,
-            result.category,
+
+        trial_results = []
+        trial_csv_results = []
+        trial_durations = []
+        for index, out_path in enumerate(out_paths):
+            trial_candidate_id = _candidate_label(candidate_id, index)
+            try:
+                result = await asyncio.to_thread(
+                    score_activity_video,
+                    activity=activity,
+                    video_path=out_path,
+                    age_group=age_group,
+                    candidate_id=trial_candidate_id,
+                    candidate_name=name.strip(),
+                    age=age,
+                    gender=gender,
+                    jumped_length=jumped_lengths[index] if index < len(jumped_lengths) else jumped_length,
+                    progress_request_id=resolved_request_id,
+                )
+            except ValueError as exc:
+                raise HTTPException(status_code=400, detail=str(exc)) from exc
+            logger.info(
+                "SCORING_DONE | activity=%s | candidate_id=%s | trial=%s | score=%s | category=%s",
+                activity,
+                trial_candidate_id,
+                index + 1,
+                result.score,
+                result.category,
+            )
+            csv_result = read_latest_csv_row(
+                activity,
+                candidate_id=trial_candidate_id,
+                video_path=str(out_path),
+            )
+            trial_results.append(result)
+            trial_csv_results.append(csv_result)
+            trial_durations.append(result.duration_seconds)
+
+        metrics_source_rows = [
+            csv_item.get("row", {}) if isinstance(csv_item, dict) else {}
+            for csv_item in trial_csv_results
+        ]
+        activity_metrics, computed_score, computed_max_score, computed_category = build_assessment_metrics(
+            activity=activity,
+            age_group=age_group,
+            age=age,
+            gender=gender,
+            trial_rows=metrics_source_rows,
+            trial_durations=trial_durations,
+            jumped_lengths=jumped_lengths,
+            landing_stabilities=landing_stabilities,
         )
+        primary_csv_result = _build_csv_result_payload(
+            activity=activity,
+            trial_csv_results=trial_csv_results,
+            jumped_lengths=jumped_lengths,
+        )
+        computed_duration = round(sum(trial_durations) / max(1, len(trial_durations)), 2)
 
         record = {
             "created_at": datetime.utcnow().isoformat() + "Z",
@@ -254,25 +410,23 @@ async def _analyze_internal(
             "activity": activity,
             "gender": gender,
             "jumped_length": jumped_length,
-            "score": result.score,
-            "max_score": result.max_score,
-            "category": result.category,
-            "duration_seconds": result.duration_seconds,
-            "video_path": str(out_path),
+            "jumped_length_2": jumped_length_2,
+            "landing_stability": landing_stability,
+            "landing_stability_2": landing_stability_2,
+            "score": computed_score,
+            "max_score": computed_max_score,
+            "category": computed_category,
+            "duration_seconds": computed_duration,
+            "video_path": str(out_paths[0]),
+            "video_path_2": str(out_paths[1]) if len(out_paths) > 1 else None,
+            "activity_metrics": activity_metrics,
         }
         saved_path = append_score_record(record)
-        csv_result = read_latest_csv_row(
-            activity,
-            candidate_id=candidate_id,
-            video_path=str(out_path),
+        mongo_status = persist_record_to_mongodb(
+            record=record,
+            csv_result=primary_csv_result,
+            video_uploads=mongo_video_uploads,
         )
-        activity_metrics = extract_calculation_variables(activity, csv_result)
-        if activity_metrics is None:
-            activity_metrics = {}
-        activity_metrics["Category"] = record["category"]
-        if activity == "long_jump" and jumped_length is not None:
-            activity_metrics["Jumped_distance_cm"] = float(jumped_length)
-        mongo_status = persist_record_to_mongodb(record=record, csv_result=csv_result)
         if not mongo_status.get("ok"):
             logger.warning(
                 "MONGO_SAVE_FAILED | activity=%s | candidate_id=%s | error=%s",
@@ -305,7 +459,7 @@ async def _analyze_internal(
             duration_seconds=record["duration_seconds"],
             video_path=record["video_path"],
             saved_record_path=str(saved_path),
-            csv_result=csv_result,
+            csv_result=primary_csv_result,
             activity_metrics=activity_metrics,
         )
     except HTTPException:

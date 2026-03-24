@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: physical-projects-backend
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn common_backend.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB_NAME
+        value: FitQuest_Physical_database
+      - key: UPLOAD_ROOT
+        value: /var/data/uploads
+      - key: RESULTS_DIR
+        value: /var/data/results
+      - key: RUNTIME_DATA_DIR
+        value: /var/data/runtime
+    disk:
+      name: backend-data
+      mountPath: /var/data
+      sizeGB: 10
+
+  - type: web
+    name: physical-projects-frontend
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run common_frontend/streamlit_app.py --server.address 0.0.0.0 --server.port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: BACKEND_URL
+        sync: false

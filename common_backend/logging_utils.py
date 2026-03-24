@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import logging
+import os
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
 
 def get_activity_logger() -> logging.Logger:
-    logs_dir = Path("common_backend") / "logs"
+    logs_dir = Path(os.getenv("LOGS_DIR", str(Path("common_backend") / "logs")))
     logs_dir.mkdir(parents=True, exist_ok=True)
     log_file = logs_dir / "activity.log"
 

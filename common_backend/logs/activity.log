@@ -3480,3 +3480,411 @@ TypeError: '<' not supported between instances of 'NoneType' and 'int'
 2026-03-17 12:08:52 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC302A783C
 2026-03-17 12:08:52 | INFO | MONGO_SAVE_OK | activity=shuttle_run | candidate_id=DC302A783C | collections=users,children,shuttle_run_results,shuttle_run_calculation_variables,data_storage
 2026-03-17 12:08:52 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DC302A783C | saved_json=common_backend\results\scores.json
+2026-03-23 12:15:07 | INFO | REQUEST_START | activity=shuttle_run | age_group=6-9 | age=7 | name=dfg
+2026-03-23 12:15:07 | INFO | VIDEO_SAVED | activity=shuttle_run | video_path=common_backend\uploads\6-9\shuttle_run\20260323_064507_dfg_76fa816c.mp4
+2026-03-23 12:15:09 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DCA450D136
+2026-03-23 12:15:09 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DCA450D136
+2026-03-23 12:15:09 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DCA450D136 | age_group=6-9 | video_path=common_backend\uploads\6-9\shuttle_run\20260323_064507_dfg_76fa816c.mp4
+2026-03-23 12:15:09 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DCA450D136 | duration=14.66
+2026-03-23 12:15:09 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DCA450D136 | age_group=6-9
+2026-03-23 12:18:56 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DCA450D136 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-23 12:18:56 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DCA450D136
+2026-03-23 12:18:56 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DCA450D136
+2026-03-23 12:18:56 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DCA450D136 | score=12.0 | category=Average
+2026-03-23 12:18:59 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=shuttle_run | candidate_id=DCA450D136
+2026-03-23 12:18:59 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCA450D136
+2026-03-23 12:18:59 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCA450D136
+2026-03-23 12:18:59 | INFO | MONGO_WRITE_OK | collection=shuttle_run_results | candidate_id=DCA450D136
+2026-03-23 12:18:59 | INFO | MONGO_WRITE_OK | collection=shuttle_run_calculation_variables | candidate_id=DCA450D136
+2026-03-23 12:18:59 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCA450D136
+2026-03-23 12:18:59 | INFO | MONGO_SAVE_OK | activity=shuttle_run | candidate_id=DCA450D136 | collections=users,children,shuttle_run_results,shuttle_run_calculation_variables,data_storage
+2026-03-23 12:18:59 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DCA450D136 | saved_json=common_backend\results\scores.json
+2026-03-23 14:31:39 | INFO | REQUEST_START | activity=shuttle_run | age_group=10-13 | age=12 | name=yhbhy
+2026-03-23 14:31:39 | INFO | VIDEO_SAVED | activity=shuttle_run | video_path=common_backend\uploads\10-13\shuttle_run\20260323_090139_yhbhy_7054233b.mp4
+2026-03-23 14:31:39 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DC16250448
+2026-03-23 14:31:39 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DC16250448
+2026-03-23 14:31:39 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DC16250448 | age_group=10-13 | video_path=common_backend\uploads\10-13\shuttle_run\20260323_090139_yhbhy_7054233b.mp4
+2026-03-23 14:31:40 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DC16250448 | duration=14.66
+2026-03-23 14:31:40 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DC16250448 | age_group=10-13
+2026-03-23 14:35:10 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DC16250448 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-23 14:35:11 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DC16250448 | score=12.0 | category=Average
+2026-03-23 14:35:11 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=shuttle_run | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | MONGO_WRITE_OK | collection=shuttle_run_results | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | MONGO_WRITE_OK | collection=shuttle_run_calculation_variables | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC16250448
+2026-03-23 14:35:11 | INFO | MONGO_SAVE_OK | activity=shuttle_run | candidate_id=DC16250448 | collections=users,children,shuttle_run_results,shuttle_run_calculation_variables,data_storage
+2026-03-23 14:35:11 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DC16250448 | saved_json=common_backend\results\scores.json
+2026-03-24 16:49:18 | INFO | REQUEST_START | activity=shuttle_run | age_group=6-9 | age=6 | name=xcvb
+2026-03-24 16:49:18 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=1 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_111918_xcvb_trial1_9dc03705.mp4
+2026-03-24 16:49:20 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=2 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_111920_xcvb_trial2_17f5829b.mp4
+2026-03-24 16:49:20 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DCC2C23BB6T1
+2026-03-24 16:49:20 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DCC2C23BB6T1
+2026-03-24 16:49:20 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DCC2C23BB6T1 | age_group=6-9 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_111918_xcvb_trial1_9dc03705.mp4
+2026-03-24 16:49:20 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DCC2C23BB6T1 | duration=14.66
+2026-03-24 16:49:20 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DCC2C23BB6T1 | age_group=6-9
+2026-03-24 16:54:12 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DCC2C23BB6T1 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 16:54:12 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DCC2C23BB6T1
+2026-03-24 16:54:12 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DCC2C23BB6T1
+2026-03-24 16:54:12 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DCC2C23BB6T1 | trial=1 | score=12.0 | category=Average
+2026-03-24 16:54:12 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DCC2C23BB6T2
+2026-03-24 16:54:12 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DCC2C23BB6T2
+2026-03-24 16:54:12 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DCC2C23BB6T2 | age_group=6-9 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_111920_xcvb_trial2_17f5829b.mp4
+2026-03-24 16:54:12 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DCC2C23BB6T2 | duration=14.66
+2026-03-24 16:54:12 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DCC2C23BB6T2 | age_group=6-9
+2026-03-24 16:58:02 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DCC2C23BB6T2 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 16:58:02 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DCC2C23BB6T2
+2026-03-24 16:58:02 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DCC2C23BB6T2
+2026-03-24 16:58:02 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DCC2C23BB6T2 | trial=2 | score=12.0 | category=Average
+2026-03-24 16:58:03 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=shuttle_run | candidate_id=DCC2C23BB6
+2026-03-24 16:58:03 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCC2C23BB6
+2026-03-24 16:58:03 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCC2C23BB6
+2026-03-24 16:58:03 | INFO | MONGO_WRITE_OK | collection=shuttle_run_results | candidate_id=DCC2C23BB6
+2026-03-24 16:58:03 | INFO | MONGO_WRITE_OK | collection=shuttle_run_calculation_variables | candidate_id=DCC2C23BB6
+2026-03-24 16:58:03 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCC2C23BB6
+2026-03-24 16:58:03 | INFO | MONGO_SAVE_OK | activity=shuttle_run | candidate_id=DCC2C23BB6 | collections=users,children,shuttle_run_results,shuttle_run_calculation_variables,data_storage
+2026-03-24 16:58:03 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DCC2C23BB6 | saved_json=common_backend\results\scores.json
+2026-03-24 17:07:51 | INFO | REQUEST_START | activity=shuttle_run | age_group=6-9 | age=6 | name=xcvb
+2026-03-24 17:07:51 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=1 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_113751_xcvb_trial1_b8d14632.mp4
+2026-03-24 17:07:51 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=2 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_113751_xcvb_trial2_bd06cd70.mp4
+2026-03-24 17:07:51 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DC43554A44T1
+2026-03-24 17:07:51 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DC43554A44T1
+2026-03-24 17:07:51 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DC43554A44T1 | age_group=6-9 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_113751_xcvb_trial1_b8d14632.mp4
+2026-03-24 17:07:51 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DC43554A44T1 | duration=14.66
+2026-03-24 17:07:51 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DC43554A44T1 | age_group=6-9
+2026-03-24 17:08:43 | INFO | REQUEST_START | activity=shuttle_run | age_group=10-13 | age=10 | name=A
+2026-03-24 17:08:43 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=1 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_113843_A_trial1_67baf885.mp4
+2026-03-24 17:08:43 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=2 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_113843_A_trial2_e20271f6.mp4
+2026-03-24 17:08:43 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DC881114F4T1
+2026-03-24 17:08:43 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DC881114F4T1
+2026-03-24 17:08:43 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DC881114F4T1 | age_group=10-13 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_113843_A_trial1_67baf885.mp4
+2026-03-24 17:08:43 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DC881114F4T1 | duration=14.66
+2026-03-24 17:08:43 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DC881114F4T1 | age_group=10-13
+2026-03-24 17:12:01 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DC43554A44T1 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 17:12:01 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DC43554A44T1
+2026-03-24 17:12:01 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DC43554A44T1
+2026-03-24 17:12:01 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DC43554A44T1 | trial=1 | score=12.0 | category=Average
+2026-03-24 17:12:01 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DC43554A44T2
+2026-03-24 17:12:01 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=6-9 | candidate_id=DC43554A44T2
+2026-03-24 17:12:01 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DC43554A44T2 | age_group=6-9 | video_path=common_backend\uploads\6-9\shuttle_run\20260324_113751_xcvb_trial2_bd06cd70.mp4
+2026-03-24 17:12:01 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DC43554A44T2 | duration=14.66
+2026-03-24 17:12:01 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DC43554A44T2 | age_group=6-9
+2026-03-24 17:12:11 | INFO | REQUEST_START | activity=high_knee_jump | age_group=10-13 | age=10 | name=aa
+2026-03-24 17:12:12 | INFO | VIDEO_SAVED | activity=high_knee_jump | trial=1 | video_path=common_backend\uploads\10-13\high_knee_jump\20260324_114211_aa_trial1_587d3464.mp4
+2026-03-24 17:12:12 | INFO | SCORING_PIPELINE_START | activity=high_knee_jump | age_group=10-13 | candidate_id=DCB01475CCT1
+2026-03-24 17:12:34 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DC881114F4T1 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 17:12:34 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DC881114F4T1
+2026-03-24 17:12:34 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DC881114F4T1
+2026-03-24 17:12:34 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DC881114F4T1 | trial=1 | score=12.0 | category=Average
+2026-03-24 17:12:34 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DC881114F4T2
+2026-03-24 17:12:34 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DC881114F4T2
+2026-03-24 17:12:34 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DC881114F4T2 | age_group=10-13 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_113843_A_trial2_e20271f6.mp4
+2026-03-24 17:12:34 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DC881114F4T2 | duration=14.66
+2026-03-24 17:12:34 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DC881114F4T2 | age_group=10-13
+2026-03-24 17:12:51 | INFO | REQUEST_START | activity=sprint_run_20m | age_group=10-13 | age=10 | name=asdfg
+2026-03-24 17:12:51 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=1 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_114251_asdfg_trial1_5f2e9784.mp4
+2026-03-24 17:12:52 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=2 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_114252_asdfg_trial2_a37cadf8.mp4
+2026-03-24 17:12:52 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DCCE10AD58T1
+2026-03-24 17:13:45 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=asdf
+2026-03-24 17:13:45 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_114345_asdf_trial1_7a8ca4aa.mp4
+2026-03-24 17:13:45 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_114345_asdf_trial2_fd20179f.mp4
+2026-03-24 17:13:45 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC54B7EF56T1
+2026-03-24 17:14:05 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC54B7EF56T1
+2026-03-24 17:14:05 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC54B7EF56T1 | trial=1 | score=6.72 | category=Poor
+2026-03-24 17:14:05 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC54B7EF56T2
+2026-03-24 17:14:29 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=7.57 | category=Below Average | duration=4.10 | candidate_id=DCCE10AD58T1
+2026-03-24 17:14:29 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DCCE10AD58T1 | trial=1 | score=7.57 | category=Below Average
+2026-03-24 17:14:29 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DCCE10AD58T2
+2026-03-24 17:14:41 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=asdf
+2026-03-24 17:14:41 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_114441_asdf_trial1_38d536a7.mp4
+2026-03-24 17:14:42 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_114441_asdf_trial2_3dad3e8e.mp4
+2026-03-24 17:14:42 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DCC0D446B0T1
+2026-03-24 17:15:18 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.79 | category=Poor | duration=2.80 | candidate_id=DCC0D446B0T1
+2026-03-24 17:15:18 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DCC0D446B0T1 | trial=1 | score=6.79 | category=Poor
+2026-03-24 17:15:18 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DCC0D446B0T2
+2026-03-24 17:15:56 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=7.03 | category=Poor | duration=2.80 | candidate_id=DCC0D446B0T2
+2026-03-24 17:15:56 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DCC0D446B0T2 | trial=2 | score=7.03 | category=Poor
+2026-03-24 17:15:57 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=long_jump | candidate_id=DCC0D446B0
+2026-03-24 17:15:57 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCC0D446B0
+2026-03-24 17:15:57 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCC0D446B0
+2026-03-24 17:15:57 | INFO | MONGO_WRITE_OK | collection=long_jump_results | candidate_id=DCC0D446B0
+2026-03-24 17:15:57 | INFO | MONGO_WRITE_OK | collection=long_jump_calculation_variables | candidate_id=DCC0D446B0
+2026-03-24 17:15:57 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCC0D446B0
+2026-03-24 17:15:57 | INFO | MONGO_SAVE_OK | activity=long_jump | candidate_id=DCC0D446B0 | collections=users,children,long_jump_results,long_jump_calculation_variables,data_storage
+2026-03-24 17:15:57 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DCC0D446B0 | saved_json=common_backend\results\scores.json
+2026-03-24 17:17:07 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=8.20 | category=Below Average | duration=6.20 | candidate_id=DCCE10AD58T2
+2026-03-24 17:17:07 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DCCE10AD58T2 | trial=2 | score=8.2 | category=Below Average
+2026-03-24 17:17:07 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=sprint_run_20m | candidate_id=DCCE10AD58
+2026-03-24 17:17:07 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCCE10AD58
+2026-03-24 17:17:07 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCCE10AD58
+2026-03-24 17:17:07 | INFO | MONGO_WRITE_OK | collection=sprint_run_20m_results | candidate_id=DCCE10AD58
+2026-03-24 17:17:07 | INFO | MONGO_WRITE_OK | collection=sprint_run_20m_calculation_variables | candidate_id=DCCE10AD58
+2026-03-24 17:17:07 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCCE10AD58
+2026-03-24 17:17:07 | INFO | MONGO_SAVE_OK | activity=sprint_run_20m | candidate_id=DCCE10AD58 | collections=users,children,sprint_run_20m_results,sprint_run_20m_calculation_variables,data_storage
+2026-03-24 17:17:07 | INFO | REQUEST_DONE | activity=sprint_run_20m | candidate_id=DCCE10AD58 | saved_json=common_backend\results\scores.json
+2026-03-24 17:17:14 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DC43554A44T2 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 17:17:14 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DC43554A44T2
+2026-03-24 17:17:14 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DC43554A44T2
+2026-03-24 17:17:14 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DC43554A44T2 | trial=2 | score=12.0 | category=Average
+2026-03-24 17:17:14 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=shuttle_run | candidate_id=DC43554A44
+2026-03-24 17:17:14 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC43554A44
+2026-03-24 17:17:14 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC43554A44
+2026-03-24 17:17:14 | INFO | MONGO_WRITE_OK | collection=shuttle_run_results | candidate_id=DC43554A44
+2026-03-24 17:17:14 | INFO | MONGO_WRITE_OK | collection=shuttle_run_calculation_variables | candidate_id=DC43554A44
+2026-03-24 17:17:14 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC43554A44
+2026-03-24 17:17:14 | INFO | MONGO_SAVE_OK | activity=shuttle_run | candidate_id=DC43554A44 | collections=users,children,shuttle_run_results,shuttle_run_calculation_variables,data_storage
+2026-03-24 17:17:14 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DC43554A44 | saved_json=common_backend\results\scores.json
+2026-03-24 17:17:58 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DC881114F4T2 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 17:17:59 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DC881114F4T2
+2026-03-24 17:17:59 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DC881114F4T2
+2026-03-24 17:17:59 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DC881114F4T2 | trial=2 | score=12.0 | category=Average
+2026-03-24 17:17:59 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=shuttle_run | candidate_id=DC881114F4
+2026-03-24 17:17:59 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC881114F4
+2026-03-24 17:17:59 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC881114F4
+2026-03-24 17:17:59 | INFO | MONGO_WRITE_OK | collection=shuttle_run_results | candidate_id=DC881114F4
+2026-03-24 17:17:59 | INFO | MONGO_WRITE_OK | collection=shuttle_run_calculation_variables | candidate_id=DC881114F4
+2026-03-24 17:17:59 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC881114F4
+2026-03-24 17:17:59 | INFO | MONGO_SAVE_OK | activity=shuttle_run | candidate_id=DC881114F4 | collections=users,children,shuttle_run_results,shuttle_run_calculation_variables,data_storage
+2026-03-24 17:17:59 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DC881114F4 | saved_json=common_backend\results\scores.json
+2026-03-24 17:19:31 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.48 | category=Poor | duration=69.86 | candidate_id=DC54B7EF56T2
+2026-03-24 17:19:31 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC54B7EF56T2 | trial=2 | score=6.48 | category=Poor
+2026-03-24 17:19:31 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=long_jump | candidate_id=DC54B7EF56
+2026-03-24 17:19:31 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC54B7EF56
+2026-03-24 17:19:31 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC54B7EF56
+2026-03-24 17:19:31 | INFO | MONGO_WRITE_OK | collection=long_jump_results | candidate_id=DC54B7EF56
+2026-03-24 17:19:31 | INFO | MONGO_WRITE_OK | collection=long_jump_calculation_variables | candidate_id=DC54B7EF56
+2026-03-24 17:19:31 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC54B7EF56
+2026-03-24 17:19:31 | INFO | MONGO_SAVE_OK | activity=long_jump | candidate_id=DC54B7EF56 | collections=users,children,long_jump_results,long_jump_calculation_variables,data_storage
+2026-03-24 17:19:31 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DC54B7EF56 | saved_json=common_backend\results\scores.json
+2026-03-24 17:19:45 | INFO | SCORING_PIPELINE_DONE | activity=high_knee_jump | score=2.00 | category=Poor | duration=86.33 | candidate_id=DCB01475CCT1
+2026-03-24 17:19:45 | INFO | SCORING_DONE | activity=high_knee_jump | candidate_id=DCB01475CCT1 | trial=1 | score=2.0 | category=Poor
+2026-03-24 17:19:45 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=high_knee_jump | candidate_id=DCB01475CC
+2026-03-24 17:19:45 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCB01475CC
+2026-03-24 17:19:45 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCB01475CC
+2026-03-24 17:19:45 | INFO | MONGO_WRITE_OK | collection=high_knee_jump_results | candidate_id=DCB01475CC
+2026-03-24 17:19:45 | INFO | MONGO_WRITE_OK | collection=high_knee_jump_calculation_variables | candidate_id=DCB01475CC
+2026-03-24 17:19:45 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCB01475CC
+2026-03-24 17:19:45 | INFO | MONGO_SAVE_OK | activity=high_knee_jump | candidate_id=DCB01475CC | collections=users,children,high_knee_jump_results,high_knee_jump_calculation_variables,data_storage
+2026-03-24 17:19:45 | INFO | REQUEST_DONE | activity=high_knee_jump | candidate_id=DCB01475CC | saved_json=common_backend\results\scores.json
+2026-03-24 17:20:46 | INFO | REQUEST_START | activity=shuttle_run | age_group=10-13 | age=10 | name=A
+2026-03-24 17:20:46 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=1 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_115046_A_trial1_dff039b2.mp4
+2026-03-24 17:20:47 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=2 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_115047_A_trial2_e24537ad.mp4
+2026-03-24 17:20:47 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCE3DED808T1
+2026-03-24 17:20:47 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCE3DED808T1
+2026-03-24 17:20:47 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DCE3DED808T1 | age_group=10-13 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_115046_A_trial1_dff039b2.mp4
+2026-03-24 17:20:47 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DCE3DED808T1 | duration=14.66
+2026-03-24 17:20:47 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DCE3DED808T1 | age_group=10-13
+2026-03-24 17:21:14 | INFO | REQUEST_START | activity=high_knee_jump | age_group=10-13 | age=10 | name=aa
+2026-03-24 17:21:14 | INFO | VIDEO_SAVED | activity=high_knee_jump | trial=1 | video_path=common_backend\uploads\10-13\high_knee_jump\20260324_115114_aa_trial1_8ee4aaba.mp4
+2026-03-24 17:21:14 | INFO | SCORING_PIPELINE_START | activity=high_knee_jump | age_group=10-13 | candidate_id=DCEFBEDB92T1
+2026-03-24 17:21:17 | INFO | REQUEST_START | activity=sprint_run_20m | age_group=10-13 | age=10 | name=asdfg
+2026-03-24 17:21:17 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=1 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_115117_asdfg_trial1_1e094fc6.mp4
+2026-03-24 17:21:17 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=2 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_115117_asdfg_trial2_3d6fe6d5.mp4
+2026-03-24 17:21:17 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DC5DF99029T1
+2026-03-24 17:21:45 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=asdf
+2026-03-24 17:21:45 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_115145_asdf_trial1_3fb3f6f6.mp4
+2026-03-24 17:21:45 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_115145_asdf_trial2_29b38488.mp4
+2026-03-24 17:21:45 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC66BEFB72T1
+2026-03-24 17:22:02 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC66BEFB72T1
+2026-03-24 17:22:02 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC66BEFB72T1 | trial=1 | score=6.72 | category=Poor
+2026-03-24 17:22:02 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC66BEFB72T2
+2026-03-24 17:22:19 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC66BEFB72T2
+2026-03-24 17:22:19 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC66BEFB72T2 | trial=2 | score=6.72 | category=Poor
+2026-03-24 17:22:19 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=long_jump | candidate_id=DC66BEFB72
+2026-03-24 17:22:20 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC66BEFB72
+2026-03-24 17:22:20 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC66BEFB72
+2026-03-24 17:22:20 | INFO | MONGO_WRITE_OK | collection=long_jump_results | candidate_id=DC66BEFB72
+2026-03-24 17:22:20 | INFO | MONGO_WRITE_OK | collection=long_jump_calculation_variables | candidate_id=DC66BEFB72
+2026-03-24 17:22:20 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC66BEFB72
+2026-03-24 17:22:20 | INFO | MONGO_SAVE_OK | activity=long_jump | candidate_id=DC66BEFB72 | collections=users,children,long_jump_results,long_jump_calculation_variables,data_storage
+2026-03-24 17:22:20 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DC66BEFB72 | saved_json=common_backend\results\scores.json
+2026-03-24 17:22:33 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=7.57 | category=Below Average | duration=4.10 | candidate_id=DC5DF99029T1
+2026-03-24 17:22:33 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DC5DF99029T1 | trial=1 | score=7.57 | category=Below Average
+2026-03-24 17:22:33 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DC5DF99029T2
+2026-03-24 17:24:25 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=8.20 | category=Below Average | duration=6.20 | candidate_id=DC5DF99029T2
+2026-03-24 17:24:25 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DC5DF99029T2 | trial=2 | score=8.2 | category=Below Average
+2026-03-24 17:24:25 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=sprint_run_20m | candidate_id=DC5DF99029
+2026-03-24 17:24:25 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC5DF99029
+2026-03-24 17:24:25 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC5DF99029
+2026-03-24 17:24:25 | INFO | MONGO_WRITE_OK | collection=sprint_run_20m_results | candidate_id=DC5DF99029
+2026-03-24 17:24:25 | INFO | MONGO_WRITE_OK | collection=sprint_run_20m_calculation_variables | candidate_id=DC5DF99029
+2026-03-24 17:24:25 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC5DF99029
+2026-03-24 17:24:25 | INFO | MONGO_SAVE_OK | activity=sprint_run_20m | candidate_id=DC5DF99029 | collections=users,children,sprint_run_20m_results,sprint_run_20m_calculation_variables,data_storage
+2026-03-24 17:24:25 | INFO | REQUEST_DONE | activity=sprint_run_20m | candidate_id=DC5DF99029 | saved_json=common_backend\results\scores.json
+2026-03-24 17:25:22 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DCE3DED808T1 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 17:25:22 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DCE3DED808T1
+2026-03-24 17:25:22 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DCE3DED808T1
+2026-03-24 17:25:22 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DCE3DED808T1 | trial=1 | score=12.0 | category=Average
+2026-03-24 17:25:22 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCE3DED808T2
+2026-03-24 17:25:22 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCE3DED808T2
+2026-03-24 17:25:22 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DCE3DED808T2 | age_group=10-13 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_115047_A_trial2_e24537ad.mp4
+2026-03-24 17:25:22 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DCE3DED808T2 | duration=14.66
+2026-03-24 17:25:22 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DCE3DED808T2 | age_group=10-13
+2026-03-24 17:25:39 | INFO | SCORING_PIPELINE_DONE | activity=high_knee_jump | score=1.00 | category=Poor | duration=47.83 | candidate_id=DCEFBEDB92T1
+2026-03-24 17:25:39 | INFO | SCORING_DONE | activity=high_knee_jump | candidate_id=DCEFBEDB92T1 | trial=1 | score=1.0 | category=Poor
+2026-03-24 17:25:39 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=high_knee_jump | candidate_id=DCEFBEDB92
+2026-03-24 17:25:39 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCEFBEDB92
+2026-03-24 17:25:39 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCEFBEDB92
+2026-03-24 17:25:39 | INFO | MONGO_WRITE_OK | collection=high_knee_jump_results | candidate_id=DCEFBEDB92
+2026-03-24 17:25:39 | INFO | MONGO_WRITE_OK | collection=high_knee_jump_calculation_variables | candidate_id=DCEFBEDB92
+2026-03-24 17:25:39 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCEFBEDB92
+2026-03-24 17:25:39 | INFO | MONGO_SAVE_OK | activity=high_knee_jump | candidate_id=DCEFBEDB92 | collections=users,children,high_knee_jump_results,high_knee_jump_calculation_variables,data_storage
+2026-03-24 17:25:39 | INFO | REQUEST_DONE | activity=high_knee_jump | candidate_id=DCEFBEDB92 | saved_json=common_backend\results\scores.json
+2026-03-24 17:28:47 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DCE3DED808T2 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 17:28:47 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DCE3DED808T2
+2026-03-24 17:28:47 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DCE3DED808T2
+2026-03-24 17:28:47 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DCE3DED808T2 | trial=2 | score=12.0 | category=Average
+2026-03-24 17:28:47 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=shuttle_run | candidate_id=DCE3DED808
+2026-03-24 17:28:47 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCE3DED808
+2026-03-24 17:28:47 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCE3DED808
+2026-03-24 17:28:47 | INFO | MONGO_WRITE_OK | collection=shuttle_run_results | candidate_id=DCE3DED808
+2026-03-24 17:28:47 | INFO | MONGO_WRITE_OK | collection=shuttle_run_calculation_variables | candidate_id=DCE3DED808
+2026-03-24 17:28:47 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCE3DED808
+2026-03-24 17:28:47 | INFO | MONGO_SAVE_OK | activity=shuttle_run | candidate_id=DCE3DED808 | collections=users,children,shuttle_run_results,shuttle_run_calculation_variables,data_storage
+2026-03-24 17:28:47 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DCE3DED808 | saved_json=common_backend\results\scores.json
+2026-03-24 18:57:49 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=asdf
+2026-03-24 18:57:49 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_132749_asdf_trial1_50ac2ddc.mp4
+2026-03-24 18:57:50 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_132750_asdf_trial2_19156188.mp4
+2026-03-24 18:57:50 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC92DADAB9T1
+2026-03-24 18:58:00 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC92DADAB9T1
+2026-03-24 18:58:00 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC92DADAB9T1 | trial=1 | score=6.72 | category=Poor
+2026-03-24 18:58:00 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC92DADAB9T2
+2026-03-24 18:58:02 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC92DADAB9T2
+2026-03-24 18:58:02 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC92DADAB9T2 | trial=2 | score=6.72 | category=Poor
+2026-03-24 18:58:02 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=long_jump | candidate_id=DC92DADAB9
+2026-03-24 18:58:02 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC92DADAB9
+2026-03-24 18:58:02 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC92DADAB9
+2026-03-24 18:58:02 | INFO | MONGO_WRITE_OK | collection=long_jump_results | candidate_id=DC92DADAB9
+2026-03-24 18:58:02 | INFO | MONGO_WRITE_OK | collection=long_jump_calculation_variables | candidate_id=DC92DADAB9
+2026-03-24 18:58:02 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC92DADAB9
+2026-03-24 18:58:02 | INFO | MONGO_VIDEO_SAVE_OK | activity=long_jump | candidate_id=DC92DADAB9 | count=2
+2026-03-24 18:58:02 | INFO | MONGO_SAVE_OK | activity=long_jump | candidate_id=DC92DADAB9 | collections=users,children,long_jump_results,long_jump_calculation_variables,data_storage,video_files,long_jump_video_metadata
+2026-03-24 18:58:02 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DC92DADAB9 | saved_json=common_backend\results\scores.json
+2026-03-24 19:23:54 | WARNING | MONGO_SCHEMA_INIT_SKIPPED | db=FitQuest_Physical_database | error=MONGO_URI is not configured.
+2026-03-24 19:24:18 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=asdf
+2026-03-24 19:24:18 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_135418_asdf_trial1_8529cfb5.mp4
+2026-03-24 19:24:19 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_135419_asdf_trial2_a9a5f613.mp4
+2026-03-24 19:24:19 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC12963962T1
+2026-03-24 19:24:32 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC12963962T1
+2026-03-24 19:24:32 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC12963962T1 | trial=1 | score=6.72 | category=Poor
+2026-03-24 19:24:32 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC12963962T2
+2026-03-24 19:24:40 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC12963962T2
+2026-03-24 19:24:40 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC12963962T2 | trial=2 | score=6.72 | category=Poor
+2026-03-24 19:24:40 | WARNING | MONGO_WRITE_SKIPPED | activity=long_jump | candidate_id=DC12963962 | reason=MONGO_URI is not configured.
+2026-03-24 19:24:40 | WARNING | MONGO_SAVE_FAILED | activity=long_jump | candidate_id=DC12963962 | error=MONGO_URI is not configured.
+2026-03-24 19:24:40 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DC12963962 | saved_json=common_backend\results\scores.json
+2026-03-24 19:25:16 | INFO | REQUEST_START | activity=sprint_run_20m | age_group=10-13 | age=10 | name=asdfg
+2026-03-24 19:25:16 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=1 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_135516_asdfg_trial1_731b4262.mp4
+2026-03-24 19:25:16 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=2 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_135516_asdfg_trial2_153c73e3.mp4
+2026-03-24 19:25:16 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DC5B62AA4DT1
+2026-03-24 19:25:22 | INFO | REQUEST_START | activity=high_knee_jump | age_group=10-13 | age=10 | name=aa
+2026-03-24 19:25:22 | INFO | VIDEO_SAVED | activity=high_knee_jump | trial=1 | video_path=common_backend\uploads\10-13\high_knee_jump\20260324_135522_aa_trial1_e2c9a799.mp4
+2026-03-24 19:25:22 | INFO | SCORING_PIPELINE_START | activity=high_knee_jump | age_group=10-13 | candidate_id=DC8CC1E7E0T1
+2026-03-24 19:25:27 | INFO | REQUEST_START | activity=shuttle_run | age_group=10-13 | age=10 | name=A
+2026-03-24 19:25:27 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=1 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_135527_A_trial1_4183309b.mp4
+2026-03-24 19:25:27 | INFO | VIDEO_SAVED | activity=shuttle_run | trial=2 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_135527_A_trial2_25766d58.mp4
+2026-03-24 19:25:27 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCA2641A90T1
+2026-03-24 19:25:27 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCA2641A90T1
+2026-03-24 19:25:27 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DCA2641A90T1 | age_group=10-13 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_135527_A_trial1_4183309b.mp4
+2026-03-24 19:25:27 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DCA2641A90T1 | duration=14.66
+2026-03-24 19:25:27 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DCA2641A90T1 | age_group=10-13
+2026-03-24 19:26:02 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=7.57 | category=Below Average | duration=4.10 | candidate_id=DC5B62AA4DT1
+2026-03-24 19:26:02 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DC5B62AA4DT1 | trial=1 | score=7.57 | category=Below Average
+2026-03-24 19:26:02 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DC5B62AA4DT2
+2026-03-24 19:26:56 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=8.20 | category=Below Average | duration=6.20 | candidate_id=DC5B62AA4DT2
+2026-03-24 19:26:56 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DC5B62AA4DT2 | trial=2 | score=8.2 | category=Below Average
+2026-03-24 19:26:56 | WARNING | MONGO_WRITE_SKIPPED | activity=sprint_run_20m | candidate_id=DC5B62AA4D | reason=MONGO_URI is not configured.
+2026-03-24 19:26:56 | WARNING | MONGO_SAVE_FAILED | activity=sprint_run_20m | candidate_id=DC5B62AA4D | error=MONGO_URI is not configured.
+2026-03-24 19:26:56 | INFO | REQUEST_DONE | activity=sprint_run_20m | candidate_id=DC5B62AA4D | saved_json=common_backend\results\scores.json
+2026-03-24 19:27:27 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DCA2641A90T1 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 19:27:27 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DCA2641A90T1
+2026-03-24 19:27:27 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DCA2641A90T1
+2026-03-24 19:27:27 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DCA2641A90T1 | trial=1 | score=12.0 | category=Average
+2026-03-24 19:27:27 | INFO | SCORING_PIPELINE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCA2641A90T2
+2026-03-24 19:27:27 | INFO | CONE_DETECTION_STAGE_START | activity=shuttle_run | age_group=10-13 | candidate_id=DCA2641A90T2
+2026-03-24 19:27:27 | INFO | SHUTTLE_RUN_INPUT_READ_START | candidate_id=DCA2641A90T2 | age_group=10-13 | video_path=common_backend\uploads\10-13\shuttle_run\20260324_135527_A_trial2_25766d58.mp4
+2026-03-24 19:27:27 | INFO | SHUTTLE_RUN_INPUT_READ_DONE | candidate_id=DCA2641A90T2 | duration=14.66
+2026-03-24 19:27:27 | INFO | SHUTTLE_RUN_CONE_DETECTION_EXECUTE | candidate_id=DCA2641A90T2 | age_group=10-13
+2026-03-24 19:27:30 | INFO | SCORING_PIPELINE_DONE | activity=high_knee_jump | score=1.00 | category=Poor | duration=47.83 | candidate_id=DC8CC1E7E0T1
+2026-03-24 19:27:30 | INFO | SCORING_DONE | activity=high_knee_jump | candidate_id=DC8CC1E7E0T1 | trial=1 | score=1.0 | category=Poor
+2026-03-24 19:27:30 | WARNING | MONGO_WRITE_SKIPPED | activity=high_knee_jump | candidate_id=DC8CC1E7E0 | reason=MONGO_URI is not configured.
+2026-03-24 19:27:30 | WARNING | MONGO_SAVE_FAILED | activity=high_knee_jump | candidate_id=DC8CC1E7E0 | error=MONGO_URI is not configured.
+2026-03-24 19:27:30 | INFO | REQUEST_DONE | activity=high_knee_jump | candidate_id=DC8CC1E7E0 | saved_json=common_backend\results\scores.json
+2026-03-24 19:28:02 | INFO | SHUTTLE_RUN_SCORE_COMPUTED | candidate_id=DCA2641A90T2 | raw_score=12.00 | adjusted_score=12.00 | category=Average
+2026-03-24 19:28:02 | INFO | CONE_DETECTION_STAGE_DONE | activity=shuttle_run | score=12.00 | category=Average | candidate_id=DCA2641A90T2
+2026-03-24 19:28:02 | INFO | SCORING_PIPELINE_DONE | activity=shuttle_run | score=12.00 | category=Average | duration=14.66 | candidate_id=DCA2641A90T2
+2026-03-24 19:28:02 | INFO | SCORING_DONE | activity=shuttle_run | candidate_id=DCA2641A90T2 | trial=2 | score=12.0 | category=Average
+2026-03-24 19:28:02 | WARNING | MONGO_WRITE_SKIPPED | activity=shuttle_run | candidate_id=DCA2641A90 | reason=MONGO_URI is not configured.
+2026-03-24 19:28:02 | WARNING | MONGO_SAVE_FAILED | activity=shuttle_run | candidate_id=DCA2641A90 | error=MONGO_URI is not configured.
+2026-03-24 19:28:02 | INFO | REQUEST_DONE | activity=shuttle_run | candidate_id=DCA2641A90 | saved_json=common_backend\results\scores.json
+2026-03-24 19:34:11 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=cv
+2026-03-24 19:34:11 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_140411_cv_trial1_d92c4995.mp4
+2026-03-24 19:34:11 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_140411_cv_trial2_33492ed1.mp4
+2026-03-24 19:34:11 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC5CE29992T1
+2026-03-24 19:34:20 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC5CE29992T1
+2026-03-24 19:34:20 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC5CE29992T1 | trial=1 | score=6.72 | category=Poor
+2026-03-24 19:34:20 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC5CE29992T2
+2026-03-24 19:34:28 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC5CE29992T2
+2026-03-24 19:34:28 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC5CE29992T2 | trial=2 | score=6.72 | category=Poor
+2026-03-24 19:34:28 | WARNING | MONGO_WRITE_SKIPPED | activity=long_jump | candidate_id=DC5CE29992 | reason=MONGO_URI is not configured.
+2026-03-24 19:34:28 | WARNING | MONGO_SAVE_FAILED | activity=long_jump | candidate_id=DC5CE29992 | error=MONGO_URI is not configured.
+2026-03-24 19:34:28 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DC5CE29992 | saved_json=common_backend\results\scores.json
+2026-03-24 19:36:33 | INFO | MONGO_SCHEMA_INIT_OK | db=FitQuest_Physical_database | created=children,data_storage,high_knee_jump_calculation_variables,high_knee_jump_results,high_knee_jump_video_metadata,long_jump_calculation_variables,long_jump_results,long_jump_video_metadata,shuttle_run_calculation_variables,shuttle_run_results,shuttle_run_video_metadata,sprint_run_20m_calculation_variables,sprint_run_20m_results,sprint_run_20m_video_metadata,users,video_files.chunks,video_files.files
+2026-03-24 19:37:24 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=sdfg
+2026-03-24 19:37:24 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_140724_sdfg_trial1_d7296b13.mp4
+2026-03-24 19:37:24 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_140724_sdfg_trial2_3ef85711.mp4
+2026-03-24 19:37:24 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC72B6C5CET1
+2026-03-24 19:37:37 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC72B6C5CET1
+2026-03-24 19:37:37 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC72B6C5CET1 | trial=1 | score=6.72 | category=Poor
+2026-03-24 19:37:37 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DC72B6C5CET2
+2026-03-24 19:37:46 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DC72B6C5CET2
+2026-03-24 19:37:46 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DC72B6C5CET2 | trial=2 | score=6.72 | category=Poor
+2026-03-24 19:37:47 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=long_jump | candidate_id=DC72B6C5CE
+2026-03-24 19:37:47 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC72B6C5CE
+2026-03-24 19:37:47 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC72B6C5CE
+2026-03-24 19:37:47 | INFO | MONGO_WRITE_OK | collection=long_jump_results | candidate_id=DC72B6C5CE
+2026-03-24 19:37:47 | INFO | MONGO_WRITE_OK | collection=long_jump_calculation_variables | candidate_id=DC72B6C5CE
+2026-03-24 19:37:47 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC72B6C5CE
+2026-03-24 19:37:48 | INFO | MONGO_VIDEO_SAVE_OK | activity=long_jump | candidate_id=DC72B6C5CE | count=2
+2026-03-24 19:37:48 | INFO | MONGO_SAVE_OK | activity=long_jump | candidate_id=DC72B6C5CE | collections=users,children,long_jump_results,long_jump_calculation_variables,data_storage,video_files,long_jump_video_metadata
+2026-03-24 19:37:48 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DC72B6C5CE | saved_json=common_backend\results\scores.json
+2026-03-24 19:42:18 | INFO | MONGO_SCHEMA_INIT_OK | db=FitQuest_Physical_database | created=none
+2026-03-24 19:43:10 | INFO | REQUEST_START | activity=long_jump | age_group=10-13 | age=10 | name=kkkkkkkkkkk
+2026-03-24 19:43:10 | INFO | VIDEO_SAVED | activity=long_jump | trial=1 | video_path=common_backend\uploads\10-13\long_jump\20260324_141310_kkkkkkkkkkk_trial1_66156e3b.mp4
+2026-03-24 19:43:10 | INFO | VIDEO_SAVED | activity=long_jump | trial=2 | video_path=common_backend\uploads\10-13\long_jump\20260324_141310_kkkkkkkkkkk_trial2_d640114c.mp4
+2026-03-24 19:43:10 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DCF961713AT1
+2026-03-24 19:43:24 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DCF961713AT1
+2026-03-24 19:43:24 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DCF961713AT1 | trial=1 | score=6.72 | category=Poor
+2026-03-24 19:43:24 | INFO | SCORING_PIPELINE_START | activity=long_jump | age_group=10-13 | candidate_id=DCF961713AT2
+2026-03-24 19:43:33 | INFO | SCORING_PIPELINE_DONE | activity=long_jump | score=6.72 | category=Poor | duration=2.80 | candidate_id=DCF961713AT2
+2026-03-24 19:43:33 | INFO | SCORING_DONE | activity=long_jump | candidate_id=DCF961713AT2 | trial=2 | score=6.72 | category=Poor
+2026-03-24 19:43:34 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=long_jump | candidate_id=DCF961713A
+2026-03-24 19:43:34 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DCF961713A
+2026-03-24 19:43:34 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DCF961713A
+2026-03-24 19:43:34 | INFO | MONGO_WRITE_OK | collection=long_jump_results | candidate_id=DCF961713A
+2026-03-24 19:43:34 | INFO | MONGO_WRITE_OK | collection=long_jump_calculation_variables | candidate_id=DCF961713A
+2026-03-24 19:43:34 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DCF961713A
+2026-03-24 19:43:35 | INFO | MONGO_VIDEO_SAVE_OK | activity=long_jump | candidate_id=DCF961713A | count=2
+2026-03-24 19:43:35 | INFO | MONGO_SAVE_OK | activity=long_jump | candidate_id=DCF961713A | collections=users,children,long_jump_results,long_jump_calculation_variables,data_storage,video_files,long_jump_video_metadata
+2026-03-24 19:43:35 | INFO | REQUEST_DONE | activity=long_jump | candidate_id=DCF961713A | saved_json=common_backend\results\scores.json
+2026-03-24 19:45:39 | INFO | REQUEST_START | activity=sprint_run_20m | age_group=10-13 | age=10 | name=kkkkkkkkkkk
+2026-03-24 19:45:39 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=1 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_141539_kkkkkkkkkkk_trial1_1775fea9.mp4
+2026-03-24 19:45:39 | INFO | VIDEO_SAVED | activity=sprint_run_20m | trial=2 | video_path=common_backend\uploads\10-13\sprint_run_20m\20260324_141539_kkkkkkkkkkk_trial2_2aa87e65.mp4
+2026-03-24 19:45:39 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DC92CD8E9FT1
+2026-03-24 19:46:16 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=7.57 | category=Below Average | duration=4.10 | candidate_id=DC92CD8E9FT1
+2026-03-24 19:46:16 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DC92CD8E9FT1 | trial=1 | score=7.57 | category=Below Average
+2026-03-24 19:46:16 | INFO | SCORING_PIPELINE_START | activity=sprint_run_20m | age_group=10-13 | candidate_id=DC92CD8E9FT2
+2026-03-24 19:47:01 | INFO | SCORING_PIPELINE_DONE | activity=sprint_run_20m | score=8.20 | category=Below Average | duration=6.20 | candidate_id=DC92CD8E9FT2
+2026-03-24 19:47:01 | INFO | SCORING_DONE | activity=sprint_run_20m | candidate_id=DC92CD8E9FT2 | trial=2 | score=8.2 | category=Below Average
+2026-03-24 19:47:01 | INFO | MONGO_CONNECT_OK | db=FitQuest_Physical_database | activity=sprint_run_20m | candidate_id=DC92CD8E9F
+2026-03-24 19:47:01 | INFO | MONGO_WRITE_OK | collection=users | candidate_id=DC92CD8E9F
+2026-03-24 19:47:02 | INFO | MONGO_WRITE_OK | collection=children | candidate_id=DC92CD8E9F
+2026-03-24 19:47:02 | INFO | MONGO_WRITE_OK | collection=sprint_run_20m_results | candidate_id=DC92CD8E9F
+2026-03-24 19:47:02 | INFO | MONGO_WRITE_OK | collection=sprint_run_20m_calculation_variables | candidate_id=DC92CD8E9F
+2026-03-24 19:47:02 | INFO | MONGO_WRITE_OK | collection=data_storage | candidate_id=DC92CD8E9F
+2026-03-24 19:47:03 | INFO | MONGO_VIDEO_SAVE_OK | activity=sprint_run_20m | candidate_id=DC92CD8E9F | count=2
+2026-03-24 19:47:03 | INFO | MONGO_SAVE_OK | activity=sprint_run_20m | candidate_id=DC92CD8E9F | collections=users,children,sprint_run_20m_results,sprint_run_20m_calculation_variables,data_storage,video_files,sprint_run_20m_video_metadata
+2026-03-24 19:47:03 | INFO | REQUEST_DONE | activity=sprint_run_20m | candidate_id=DC92CD8E9F | saved_json=common_backend\results\scores.json

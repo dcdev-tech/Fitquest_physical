@@ -2,3 +2,13 @@ Z_raw/
 20251223_154042.mp4
 venv/
 common_backend/uploads/
+common_backend/results/
+common_backend/logs/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.csv
+__pycache__/
+*.pyc

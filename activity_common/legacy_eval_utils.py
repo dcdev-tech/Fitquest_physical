@@ -1,11 +1,22 @@
 from __future__ import annotations
 
 import csv
+import os
 from pathlib import Path
 from typing import Iterable, Sequence
 
 import cv2
 import numpy as np
+
+
+RUNTIME_DATA_DIR = Path(os.getenv("RUNTIME_DATA_DIR", "."))
+
+
+def _resolve_runtime_path(csv_path: str | Path) -> Path:
+    path = Path(csv_path)
+    if path.is_absolute():
+        return path
+    return RUNTIME_DATA_DIR / path
 
 
 def safe_divide(numerator: float, denominator: float, default: float = 0.0) -> float:
@@ -75,14 +86,16 @@ def safe_video_meta(cap: cv2.VideoCapture, default_fps: float = 30.0) -> tuple[i
 
 def safe_csv_append(csv_path: str | Path, row: Iterable[object]) -> None:
     try:
-        with Path(csv_path).open("a", newline="", encoding="utf-8") as handle:
+        path = _resolve_runtime_path(csv_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", newline="", encoding="utf-8") as handle:
             csv.writer(handle).writerow(list(row))
     except OSError:
         pass
 
 
 def ensure_csv_header(csv_path: str | Path, header: Sequence[object]) -> None:
-    path = Path(csv_path)
+    path = _resolve_runtime_path(csv_path)
     if path.exists() and path.stat().st_size > 0:
         return
     safe_csv_append(path, header)

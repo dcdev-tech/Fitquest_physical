@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import csv
+import os
 from pathlib import Path
 from typing import Any
 
+
+RUNTIME_DATA_DIR = Path(os.getenv("RUNTIME_DATA_DIR", "."))
 
 CSV_BY_ACTIVITY = {
     "high_knee_jump": "high_knee_results.csv",
@@ -228,7 +231,7 @@ def read_latest_csv_row(
 ) -> dict[str, Any] | None:
     file_name = CSV_BY_ACTIVITY.get(activity)
     if file_name:
-        root_csv = Path(file_name)
+        root_csv = RUNTIME_DATA_DIR / file_name
         if root_csv.exists():
             row = _read_last_row(
                 root_csv,
