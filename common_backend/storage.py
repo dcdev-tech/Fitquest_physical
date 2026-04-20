@@ -1,4 +1,4 @@
-from pathlib import Path
+""" from pathlib import Path
 import ast
 import json
 import os
@@ -479,3 +479,4 @@ def persist_record_to_mongodb(
             exc,
         )
         return status
+"""

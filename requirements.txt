@@ -23,3 +23,4 @@ ultralytics
 torch
 torchvision
 ipython
+google-cloud-storage

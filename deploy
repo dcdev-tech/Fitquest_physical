@@ -1,0 +1,12 @@
+gcloud auth login
+
+gcloud config set project fitquest-prod-480610
+
+gcloud auth application-default set-quota-project fitquest-prod-480610
+
+gcloud auth configure-docker \
+    asia-south1-docker.pkg.dev
+
+docker build -t asia-south1-docker.pkg.dev/fitquest-prod-480610/mlengine/fitquest-ml-engine:v1 .
+
+docker push asia-south1-docker.pkg.dev/fitquest-prod-480610/mlengine/fitquest-ml-engine:v1
