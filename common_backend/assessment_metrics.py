@@ -587,18 +587,21 @@ def build_assessment_metrics(
         trial_1_time = round(times[0], 2) if len(times) > 0 else 0.0
         trial_2_time = round(times[1], 2) if len(times) > 1 else trial_1_time
         best_time = round(min([t for t in [trial_1_time, trial_2_time] if t > 0] or [0.0]), 2)
+        
         metrics = {
-            "Child Name": candidate_name or "",
-            "Age": age if age is not None else "",
+            "Age": int(age) if age is not None else "",
             "Trial 1 Time(s)": trial_1_time,
             "Trial 2 Time(s)": trial_2_time,
             "Best Time(s)": best_time,
-            "Sprint Time Performance": _score_with_max(id1, 5),
-            "Posture & Body Position": _score_with_max(id2, 6),
-            "Arm Movement": _score_with_max(id3, 6),
-            "Leg Action": _score_with_max(id4, 6),
-            "Composite Technique Score": _score_with_max(id5, 6),
-            "Final Score": _score_with_max(final_score, 10),
+            
+            # Replaced _score_with_max with the nested object structure
+            "Sprint Time Performance": {"score": id1, "maxValue": 5},
+            "Posture & Body Position": {"score": id2, "maxValue": 6},
+            "Arm Movement": {"score": id3, "maxValue": 6},
+            "Leg Action": {"score": id4, "maxValue": 6},
+            "Composite Technique Score": {"score": id5, "maxValue": 6},
+            "Final Score": {"score": final_score, "maxValue": 10},
+            
             "Final Marking": final_marking,
         }
         return metrics, final_score, 10, final_marking
