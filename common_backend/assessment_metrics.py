@@ -553,6 +553,7 @@ def build_assessment_metrics(
     jumped_lengths: list[float | None] | None = None,
     landing_stabilities: list[int | None] | None = None,
 ) -> tuple[dict[str, Any], int, int, str]:
+    
     if activity == "sprint_run_20m":
         times = [float(_row_value(row, "Sprint_time", 0.0) or 0.0) for row in trial_rows]
         postures = [
@@ -594,7 +595,6 @@ def build_assessment_metrics(
             "Trial 2 Time(s)": trial_2_time,
             "Best Time(s)": best_time,
             
-            # Replaced _score_with_max with the nested object structure
             "Sprint Time Performance": {"score": id1, "maxValue": 5},
             "Posture & Body Position": {"score": id2, "maxValue": 6},
             "Arm Movement": {"score": id3, "maxValue": 6},
@@ -645,15 +645,17 @@ def build_assessment_metrics(
             "Age": age if age is not None else "",
             "Duration Completed(min)": round(duration_seconds / 60.0, 2),
             "Laps Completed": laps_completed,
-            "Complete Laps": _score_with_max(id1, 5),
-            "Postural Maintenance": _score_with_max(id2, 8),
-            "Knee Height Consistency": _score_with_max(id3, 5),
-            "Arm-Leg Coordination": _score_with_max(id4, 4),
-            "Pace and Rhythm Maintenance": f"{round(id5, 2)} / 3",
-            "Task Completion Level": f"{id6} / 4",
-            "Movement Quality Total": f"{round(id7, 2)} / 20",
-            "Quality Band (internal)": _score_with_max(id8, 4),
-            "Final Score": _score_with_max(final_score, 5),
+            
+            "Complete Laps": {"score": id1, "maxValue": 5},
+            "Postural Maintenance": {"score": id2, "maxValue": 8},
+            "Knee Height Consistency": {"score": id3, "maxValue": 5},
+            "Arm-Leg Coordination": {"score": id4, "maxValue": 4},
+            "Pace and Rhythm Maintenance": {"score": round(id5, 2), "maxValue": 3},
+            "Task Completion Level": {"score": id6, "maxValue": 4},
+            "Movement Quality Total": {"score": round(id7, 2), "maxValue": 20},
+            "Quality Band (internal)": {"score": id8, "maxValue": 4},
+            "Final Score": {"score": final_score, "maxValue": 5},
+            
             "Final Marking": final_marking,
         }
         return metrics, final_score, 5, final_marking
@@ -685,21 +687,21 @@ def build_assessment_metrics(
             "Trial 1 Distance(cm)": trial_1_distance,
             "Trial 2 Distance(cm)": trial_2_distance,
             "Best Distance(cm)": best_distance,
-            "Jump Distance Performance": _score_with_max(id1, 5),
-            "Arm Coordination & Takeoff": _score_with_max(id2, 5),
-            "Flight Phase & Body Position": _score_with_max(id3, 5),
-            "Landing Technique & Stability": _score_with_max(id4, 5),
-            "Landing Stability Adjustment": _score_with_max(id5, 1),
-            "Composite Technique Score": _score_with_max(id6, 5),
-            "Final Score": _score_with_max(final_score, 10),
+            
+            "Jump Distance Performance": {"score": id1, "maxValue": 5},
+            "Arm Coordination & Takeoff": {"score": id2, "maxValue": 5},
+            "Flight Phase & Body Position": {"score": id3, "maxValue": 5},
+            "Landing Technique & Stability": {"score": id4, "maxValue": 5},
+            "Landing Stability Adjustment": {"score": id5, "maxValue": 1},
+            "Composite Technique Score": {"score": id6, "maxValue": 5},
+            "Final Score": {"score": final_score, "maxValue": 10},
+            
             "Final Marking": final_marking,
         }
         return metrics, final_score, 10, final_marking
 
     if activity == "shuttle_run":
         times = [float(_row_value(row, "Avg_turn_time", 0.0) or 0.0) for row in trial_rows]
-        # Use legacy video-total time when available in the row fallback, otherwise derive from duration if needed.
-        # Existing CSVs do not save shuttle total time, so derive it from trial video duration for ID1 scoring.
         if trial_durations:
             times = [float(value or 0.0) for value in trial_durations]
         avg_time = round(sum(times) / max(1, len(times)), 2)
@@ -738,12 +740,14 @@ def build_assessment_metrics(
             "Trial 1 Time(s)": trial_1_time,
             "Trial 2 Time(s)": trial_2_time,
             "Best Time(s)": best_time,
-            "Shuttle Time Performance": _score_with_max(id1, 6),
-            "Line Touch Accuracy": _score_with_max(id2, 6),
-            "Turning Efficiency": _score_with_max(id3, 6),
-            "Movement Control": _score_with_max(id4, 6),
-            "Composite Technique Score": _score_with_max(id5, 6),
-            "Final Score": _score_with_max(final_score, 10),
+            
+            "Shuttle Time Performance": {"score": id1, "maxValue": 6},
+            "Line Touch Accuracy": {"score": id2, "maxValue": 6},
+            "Turning Efficiency": {"score": id3, "maxValue": 6},
+            "Movement Control": {"score": id4, "maxValue": 6},
+            "Composite Technique Score": {"score": id5, "maxValue": 6},
+            "Final Score": {"score": final_score, "maxValue": 10},
+            
             "Final Marking": final_marking,
         }
         return metrics, final_score, 10, final_marking
