@@ -17,11 +17,23 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from common_backend.config import ACTIVITY_DURATION_SECONDS, ACTIVITY_LABELS, AGE_GROUPS
+from common_backend.config import (
+    ACTIVITY_DURATION_SECONDS,
+    ACTIVITY_DURATION_SECONDS_BY_GROUP,
+    ACTIVITY_LABELS,
+    ACTIVITY_LABELS_BY_GROUP,
+    AGE_GROUPS,
+)
 
 
 ANALYZE_TIMEOUT_SECONDS = 900
 DUAL_TRIAL_ACTIVITIES = {"sprint_run_20m", "shuttle_run", "long_jump"}
+IMAGE_UPLOAD_ACTIVITIES = {"visual_integration"}
+PRESCHOOL_GROUP = "2.5-5"
+PRESCHOOL_ACTIVITY_GROUPS = {
+    "Gross Motor": ["running", "galloping", "hopping", "skipping", "jumping"],
+    "Fine Motor": ["bead_threading", "block_stacking"],
+}
 
 
 def show_json_safe(value: object, *, fallback_message: str = "No data available.") -> None:
@@ -50,6 +62,21 @@ def user_visible_metrics(payload: object) -> dict:
     hidden = {"ID", "Name", "Video_path"}
     return {k: v for k, v in row.items() if k not in hidden}
 
+
+def activity_duration_seconds(metadata: dict, age_group: str, activity: str) -> int:
+    group_durations = metadata.get("durations_seconds_by_group", {}).get(age_group, {})
+    return int(group_durations.get(activity, metadata["durations_seconds"].get(activity, 20)))
+
+
+def activity_label(metadata: dict, age_group: str, activity: str) -> str:
+    group_labels = metadata.get("activities_by_group", {}).get(age_group, {})
+    return group_labels.get(activity, metadata["activities"].get(activity, activity))
+
+
+def activity_option_label(metadata: dict, age_group: str, activity: str) -> str:
+    duration = activity_duration_seconds(metadata, age_group, activity)
+    return f"{activity_label(metadata, age_group, activity)} ({duration} sec)"
+
 st.set_page_config(page_title="Child Activity Assessment", layout="wide")
 st.title("Child Activity Assessment")
 
@@ -61,7 +88,9 @@ backend_url = st.text_input("Backend URL", value=default_backend_url).rstrip("/"
 metadata = {
     "age_groups": AGE_GROUPS,
     "activities": ACTIVITY_LABELS,
+    "activities_by_group": ACTIVITY_LABELS_BY_GROUP,
     "durations_seconds": ACTIVITY_DURATION_SECONDS,
+    "durations_seconds_by_group": ACTIVITY_DURATION_SECONDS_BY_GROUP,
 }
 
 try:
@@ -96,10 +125,13 @@ except Exception:
     pass
 
 st.subheader("Step 2: Choose Activity")
+if selected_age_group == PRESCHOOL_GROUP:
+    preschool_type = st.radio("Motor Type", list(PRESCHOOL_ACTIVITY_GROUPS.keys()), horizontal=True)
+    allowed_activities = PRESCHOOL_ACTIVITY_GROUPS[preschool_type]
 activity_choice = st.selectbox(
     "Activity",
     allowed_activities,
-    format_func=lambda a: metadata["activities"].get(a, a),
+    format_func=lambda a: activity_option_label(metadata, selected_age_group, a),
     key="activity_choice",
 )
 if st.button("Confirm Activity", type="primary"):
@@ -112,8 +144,8 @@ if not selected_activity:
 
 st.subheader("Step 3: Enter Child Details and Record")
 age_spec = metadata["age_groups"][selected_age_group]
-min_age = int(age_spec["min_age"])
-max_age = int(age_spec["max_age"])
+min_age = float(age_spec["min_age"])
+max_age = float(age_spec["max_age"])
 
 col1, col2 = st.columns(2)
 with col1:
@@ -124,7 +156,7 @@ with col2:
         min_value=min_age,
         max_value=max_age,
         value=min_age,
-        step=1,
+        step=0.5 if selected_age_group == PRESCHOOL_GROUP else 1.0,
         key="child_age",
     )
 
@@ -132,6 +164,16 @@ trial1_jumped_distance_cm: float | None = None
 trial2_jumped_distance_cm: float | None = None
 trial1_landing_stability: int | None = None
 trial2_landing_stability: int | None = None
+blocks_stood: int | None = None
+blocks_dropped: int | None = None
+beads_threaded: int | None = None
+beads_dropped: int | None = None
+ball_catches: int | None = None
+ball_drops: int | None = None
+peg_count: int | None = None
+peg_drop_count: int | None = None
+bead_drop_count: int | None = None
+ladder_box_count: int | None = None
 if selected_activity == "long_jump":
     lj_col1, lj_col2 = st.columns(2)
     with lj_col1:
@@ -160,10 +202,42 @@ if selected_activity == "long_jump":
             ["Stable", "Unstable"],
             key="landing_stability_trial_2",
         ) == "Stable" else 0
+elif selected_activity == "block_stacking":
+    block_col1, block_col2 = st.columns(2)
+    with block_col1:
+        blocks_stood = st.number_input("Number of Blocks Stood", min_value=0, value=0, step=1)
+    with block_col2:
+        blocks_dropped = st.number_input("Number of Blocks Dropped", min_value=0, value=0, step=1)
+elif selected_activity == "bead_threading":
+    bead_col1, bead_col2 = st.columns(2)
+    with bead_col1:
+        beads_threaded = st.number_input("Number of Beads Threaded", min_value=0, value=0, step=1)
+    with bead_col2:
+        beads_dropped = st.number_input("Number of Beads Dropped", min_value=0, value=0, step=1)
+elif selected_activity == "ball_catch":
+    ball_col1, ball_col2 = st.columns(2)
+    with ball_col1:
+        ball_catches = st.number_input("Ball Catch Count", min_value=0, value=0, step=1)
+    with ball_col2:
+        ball_drops = st.number_input("Ball Drop Count", min_value=0, value=0, step=1)
+elif selected_activity == "peg_board":
+    peg_col1, peg_col2 = st.columns(2)
+    with peg_col1:
+        peg_count = st.number_input("Peg Count", min_value=0, value=0, step=1)
+    with peg_col2:
+        peg_drop_count = st.number_input("Peg Drop Count", min_value=0, value=0, step=1)
+elif selected_activity == "beads_fm":
+    beads_fm_col1, beads_fm_col2 = st.columns(2)
+    with beads_fm_col1:
+        beads_threaded = st.number_input("Beads Threaded", min_value=0, value=0, step=1)
+    with beads_fm_col2:
+        bead_drop_count = st.number_input("Bead Drop Count", min_value=0, value=0, step=1)
+elif selected_activity == "agility_ladder":
+    ladder_box_count = st.number_input("Number of Boxes in Ladder", min_value=1, value=10, step=1)
 
-duration = int(metadata["durations_seconds"].get(selected_activity, 20))
+duration = activity_duration_seconds(metadata, selected_age_group, selected_activity)
 st.info(
-    f"Selected: {selected_age_group} -> {metadata['activities'].get(selected_activity, selected_activity)}. "
+    f"Selected: {selected_age_group} -> {activity_label(metadata, selected_age_group, selected_activity)}. "
     f"Recording duration: {duration} seconds"
 )
 if selected_activity in DUAL_TRIAL_ACTIVITIES:
@@ -172,7 +246,7 @@ if selected_activity in DUAL_TRIAL_ACTIVITIES:
 payload = {
     "backend_url": backend_url,
     "name": child_name,
-    "age": int(child_age),
+    "age": float(child_age),
     "age_group": selected_age_group,
     "activity": selected_activity,
     "duration": duration,
@@ -181,6 +255,16 @@ payload = {
     "jumped_distance_cm_trial_2": trial2_jumped_distance_cm,
     "landing_stability_trial_1": trial1_landing_stability,
     "landing_stability_trial_2": trial2_landing_stability,
+    "blocks_stood": blocks_stood,
+    "blocks_dropped": blocks_dropped,
+    "beads_threaded": beads_threaded,
+    "beads_dropped": beads_dropped,
+    "ball_catches": ball_catches,
+    "ball_drops": ball_drops,
+    "peg_count": peg_count,
+    "peg_drop_count": peg_drop_count,
+    "bead_drop_count": bead_drop_count,
+    "ladder_box_count": ladder_box_count,
 }
 
 html = """
@@ -561,6 +645,29 @@ uploadBtn.onclick = async () => {
       form.append('landing_stability', String(cfg.landing_stability_trial_1 ?? 0));
       form.append('landing_stability_2', String(cfg.landing_stability_trial_2 ?? cfg.landing_stability_trial_1 ?? 0));
     }
+    if (cfg.activity === 'block_stacking') {
+      form.append('blocks_stood', String(cfg.blocks_stood ?? 0));
+      form.append('blocks_dropped', String(cfg.blocks_dropped ?? 0));
+    }
+    if (cfg.activity === 'bead_threading') {
+      form.append('beads_threaded', String(cfg.beads_threaded ?? 0));
+      form.append('beads_dropped', String(cfg.beads_dropped ?? 0));
+    }
+    if (cfg.activity === 'ball_catch') {
+      form.append('ball_catches', String(cfg.ball_catches ?? 0));
+      form.append('ball_drops', String(cfg.ball_drops ?? 0));
+    }
+    if (cfg.activity === 'peg_board') {
+      form.append('peg_count', String(cfg.peg_count ?? 0));
+      form.append('peg_drop_count', String(cfg.peg_drop_count ?? 0));
+    }
+    if (cfg.activity === 'beads_fm') {
+      form.append('beads_threaded', String(cfg.beads_threaded ?? 0));
+      form.append('bead_drop_count', String(cfg.bead_drop_count ?? 0));
+    }
+    if (cfg.activity === 'agility_ladder') {
+      form.append('ladder_box_count', String(cfg.ladder_box_count ?? 0));
+    }
     form.append('file', recordedBlob, `${cfg.activity}.webm`);
     if (cfg.is_dual_trial_activity) {
       form.append('file_2', recordedBlob, `${cfg.activity}_trial2.webm`);
@@ -614,10 +721,12 @@ uploadBtn.onclick = async () => {
 """
 html = html.replace("__PAYLOAD_JSON__", json.dumps(payload))
 
-st.subheader("Step 4: Upload Existing Video")
+st.subheader("Step 4: Upload Existing File" if selected_activity in IMAGE_UPLOAD_ACTIVITIES else "Step 4: Upload Existing Video")
+upload_label = "Upload image file" if selected_activity in IMAGE_UPLOAD_ACTIVITIES else "Upload trial 1 video file"
+upload_types = ["png", "jpg", "jpeg"] if selected_activity in IMAGE_UPLOAD_ACTIVITIES else ["mp4", "mov", "avi", "mkv", "webm"]
 uploaded_video = st.file_uploader(
-    "Upload trial 1 video file",
-    type=["mp4", "mov", "avi", "mkv", "webm"],
+    upload_label,
+    type=upload_types,
     accept_multiple_files=False,
     key="manual_video_upload_trial_1",
 )
@@ -631,10 +740,14 @@ if selected_activity in DUAL_TRIAL_ACTIVITIES:
     )
 
 if uploaded_video is not None:
-    st.video(uploaded_video)
+    if selected_activity in IMAGE_UPLOAD_ACTIVITIES:
+        st.image(uploaded_video)
+    else:
+        st.video(uploaded_video)
     if uploaded_video_2 is not None:
         st.video(uploaded_video_2)
-    if st.button("Submit Uploaded Video", type="primary"):
+    submit_label = "Submit Uploaded Image" if selected_activity in IMAGE_UPLOAD_ACTIVITIES else "Submit Uploaded Video"
+    if st.button(submit_label, type="primary"):
         try:
             if not str(child_name or "").strip():
                 raise RuntimeError("Please enter Child Name in Step 3 before submitting uploaded video.")
@@ -657,7 +770,7 @@ if uploaded_video is not None:
                     data = {
                         "request_id": request_id,
                         "name": str(child_name).strip(),
-                        "age": str(int(child_age)),
+                        "age": str(float(child_age)),
                         "age_group": selected_age_group,
                         "activity": selected_activity,
                         "gender": "male",
@@ -667,6 +780,23 @@ if uploaded_video is not None:
                         data["jumped_length_2"] = str(float(trial2_jumped_distance_cm or trial1_jumped_distance_cm))
                         data["landing_stability"] = str(int(trial1_landing_stability or 0))
                         data["landing_stability_2"] = str(int(trial2_landing_stability or 0))
+                    if selected_activity == "block_stacking":
+                        data["blocks_stood"] = str(int(blocks_stood or 0))
+                        data["blocks_dropped"] = str(int(blocks_dropped or 0))
+                    if selected_activity == "bead_threading":
+                        data["beads_threaded"] = str(int(beads_threaded or 0))
+                        data["beads_dropped"] = str(int(beads_dropped or 0))
+                    if selected_activity == "ball_catch":
+                        data["ball_catches"] = str(int(ball_catches or 0))
+                        data["ball_drops"] = str(int(ball_drops or 0))
+                    if selected_activity == "peg_board":
+                        data["peg_count"] = str(int(peg_count or 0))
+                        data["peg_drop_count"] = str(int(peg_drop_count or 0))
+                    if selected_activity == "beads_fm":
+                        data["beads_threaded"] = str(int(beads_threaded or 0))
+                        data["bead_drop_count"] = str(int(bead_drop_count or 0))
+                    if selected_activity == "agility_ladder":
+                        data["ladder_box_count"] = str(int(ladder_box_count or 0))
                     response = requests.post(
                         f"{backend_url}/api/v1/analyze",
                         files=files,
@@ -723,7 +853,7 @@ if uploaded_video is not None:
             st.write(f"Name: {payload.get('name', child_name)}")
             st.write(f"Age: {payload.get('age', child_age)}")
             st.write(
-                f"Activity: {ACTIVITY_LABELS.get(payload.get('activity', selected_activity), payload.get('activity', selected_activity))}"
+                f"Activity: {activity_label(metadata, selected_age_group, payload.get('activity', selected_activity))}"
             )
             metrics = user_visible_metrics(payload)
             if metrics:
@@ -732,9 +862,10 @@ if uploaded_video is not None:
         except Exception as exc:
             st.error(f"Upload error: {exc}")
 
-st.subheader("Step 5: Or Record Video")
-components.html(
-    html,
-    height=980,
-    scrolling=True,
-)
+if selected_activity not in IMAGE_UPLOAD_ACTIVITIES:
+    st.subheader("Step 5: Or Record Video")
+    components.html(
+        html,
+        height=980,
+        scrolling=True,
+    )

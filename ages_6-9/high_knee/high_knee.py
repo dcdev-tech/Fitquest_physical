@@ -230,26 +230,26 @@ def rhythm(step_times_interwal):
 def endurance_score(age, steps):
     # Ages 6–7
     if 6 <= age <= 7.5:
-        if steps >= 80:
+        if steps >= 27:
             return 5
-        elif steps >= 65:
+        elif steps >= 22:
             return 4
-        elif steps >= 50:
+        elif steps >= 17:
             return 3
-        elif steps >= 35:
+        elif steps >= 12:
             return 2
         else:
             return 1
 
     # Ages 8–9
     elif 7.5 < age <= 9:
-        if steps >= 100:
+        if steps >= 34:
             return 5
-        elif steps >= 80:
+        elif steps >= 27:
             return 4
-        elif steps >= 60:
+        elif steps >= 20:
             return 3
-        elif steps >= 40:
+        elif steps >= 14:
             return 2
         else:
             return 1
@@ -299,26 +299,26 @@ def cal_high_knee_score(age, avg_side_lean, avg_vertical_angle, left_knee_height
     # D. arm-leg score
     arm_leg_score = 0
     if 6 <= age <= 7.5:
-        if coordinate_count >= 80:
+        if coordinate_count >= 27:
             arm_leg_score = 4
-        elif coordinate_count >= 60:
-            arm_leg_score = 3
-        elif coordinate_count >= 40:
-            arm_leg_score = 2
         elif coordinate_count >= 20:
+            arm_leg_score = 3
+        elif coordinate_count >= 14:
+            arm_leg_score = 2
+        elif coordinate_count >= 7:
             arm_leg_score = 1
         else:
             arm_leg_score = 0
 
     # Ages 8–9
     elif 7.5 < age <= 9:
-        if coordinate_count >= 100:
+        if coordinate_count >= 34:
             arm_leg_score = 4
-        elif coordinate_count >= 80:
+        elif coordinate_count >= 27:
             arm_leg_score = 3
-        elif coordinate_count >= 60:
+        elif coordinate_count >= 20:
             arm_leg_score = 2
-        elif coordinate_count >= 40:
+        elif coordinate_count >= 14:
             arm_leg_score = 1
         else:
             arm_leg_score = 0
@@ -359,16 +359,16 @@ def adjust_score_based_on_time(lap_count_score, video_time):
     if video_time >= 60:
         return lap_count_score
 
-    # 40-60 sec → reduce score by 1
-    elif 40 <= video_time < 60:
+    # 45-60 sec -> reduce score by 1
+    elif 45 <= video_time < 60:
         return max(0, lap_count_score - 1)
 
-    # 20-30 sec → cap max at 2
-    elif 20 <= video_time < 40:
+    # 30-45 sec -> cap max at 2
+    elif 30 <= video_time < 45:
         return min(lap_count_score, 2)
 
-    # <1 minute → max = 1
-    else:  # video_time < 20
+    # <30 sec -> max = 1
+    else:
         return min(lap_count_score, 1)
 
 def predict_category(final_score):

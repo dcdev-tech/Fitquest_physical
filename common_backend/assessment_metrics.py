@@ -97,9 +97,19 @@ def _sprint_leg_score(knee_lift: float, avg_knee_angle: float) -> int:
     return 1
 
 
-def _sprint_time_score(time_sec: float) -> int:
+def _sprint_time_score(time_sec: float, age_group: str) -> int:
     if time_sec <= 0:
         return 0
+    if age_group == "6-9":
+        if time_sec <= 2.05:
+            return 5
+        if time_sec <= 2.25:
+            return 4
+        if time_sec <= 2.45:
+            return 3
+        if time_sec <= 2.65:
+            return 2
+        return 1
     if time_sec <= 4.1:
         return 5
     if time_sec <= 4.5:
@@ -129,23 +139,23 @@ def _high_knee_complete_laps_score(age_group: str, age: int | None, laps: float)
     if age_group == "6-9":
         age_value = float(age or 0)
         if 6 <= age_value <= 7.5:
-            if laps >= 80:
+            if laps >= 27:
                 return 5
-            if laps >= 65:
+            if laps >= 22:
                 return 4
-            if laps >= 50:
+            if laps >= 17:
                 return 3
-            if laps >= 35:
+            if laps >= 12:
                 return 2
             return 1
         if 7.5 < age_value <= 9:
-            if laps >= 100:
+            if laps >= 34:
                 return 5
-            if laps >= 80:
+            if laps >= 27:
                 return 4
-            if laps >= 60:
+            if laps >= 20:
                 return 3
-            if laps >= 40:
+            if laps >= 14:
                 return 2
             return 1
         return 0
@@ -209,23 +219,23 @@ def _high_knee_coordination_score(age_group: str, age: int | None, coordinate_co
     if age_group == "6-9":
         age_value = float(age or 0)
         if 6 <= age_value <= 7.5:
-            if coordinate_count >= 80:
+            if coordinate_count >= 27:
                 return 4
-            if coordinate_count >= 60:
-                return 3
-            if coordinate_count >= 40:
-                return 2
             if coordinate_count >= 20:
+                return 3
+            if coordinate_count >= 14:
+                return 2
+            if coordinate_count >= 7:
                 return 1
             return 0
         if 7.5 < age_value <= 9:
-            if coordinate_count >= 100:
+            if coordinate_count >= 34:
                 return 4
-            if coordinate_count >= 80:
+            if coordinate_count >= 27:
                 return 3
-            if coordinate_count >= 60:
+            if coordinate_count >= 20:
                 return 2
-            if coordinate_count >= 40:
+            if coordinate_count >= 14:
                 return 1
             return 0
         return 0
@@ -281,7 +291,15 @@ def _high_knee_pace_rhythm_score(age_group: str, pace: float, rhythm: float) -> 
     return pace_score + rhythm_score
 
 
-def _high_knee_task_completion_level(duration_seconds: float) -> int:
+def _high_knee_task_completion_level(duration_seconds: float, age_group: str) -> int:
+    if age_group == "6-9":
+        if duration_seconds >= 60:
+            return 1
+        if duration_seconds >= 45:
+            return 2
+        if duration_seconds >= 30:
+            return 3
+        return 4
     if duration_seconds >= 180:
         return 1
     if duration_seconds >= 120:
@@ -578,7 +596,7 @@ def build_assessment_metrics(
             for row in trial_rows
         ]
         avg_time = round(sum(times) / max(1, len(times)), 2)
-        id1 = _sprint_time_score(avg_time)
+        id1 = _sprint_time_score(avg_time, age_group)
         id2 = _round_score(sum(postures) / max(1, len(postures)), 1, 6)
         id3 = _round_score(sum(arms) / max(1, len(arms)), 1, 6)
         id4 = _round_score(sum(legs) / max(1, len(legs)), 1, 6)
@@ -632,7 +650,7 @@ def build_assessment_metrics(
             float(_row_value(row, "Pace", 0.0) or 0.0),
             float(_row_value(row, "Rhythm", 0.0) or 0.0),
         )
-        id6 = _high_knee_task_completion_level(duration_seconds)
+        id6 = _high_knee_task_completion_level(duration_seconds, age_group)
         id7 = round(id2 + id3 + id4 + id5, 2)
         id8 = _high_knee_quality_band(id7)
         base_score = _high_knee_base_score(id1, id7)

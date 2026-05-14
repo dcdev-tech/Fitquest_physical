@@ -12,3 +12,4 @@ common_backend/logs/
 *.csv
 __pycache__/
 *.pyc
+check.txt

@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 
 class AnalyzeResponse(BaseModel):
     name: str
-    age: int
+    age: float
     age_group: str
     activity: str
     score: float

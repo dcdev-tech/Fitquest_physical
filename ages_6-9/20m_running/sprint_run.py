@@ -260,15 +260,15 @@ def detect_timing_lines(path, default_left=0.10, default_right=0.85):
 
 def score_sprint_time(time_sec: float) -> int:
     """
-    Map 20m sprint time (in seconds) to Likert score 1–5 based on your matrix.
+    Map 10m sprint time (in seconds) to Likert score 1-5.
     """
-    if time_sec <= 4.1:
+    if time_sec <= 2.05:
         return 5
-    elif time_sec <= 4.5:
+    elif time_sec <= 2.25:
         return 4
-    elif time_sec <= 4.9:
+    elif time_sec <= 2.45:
         return 3
-    elif time_sec <= 5.3:
+    elif time_sec <= 2.65:
         return 2
     else:
         return 1

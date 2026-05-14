@@ -1,4 +1,4 @@
-""" from pathlib import Path
+from pathlib import Path
 import ast
 import json
 import os
@@ -11,6 +11,26 @@ RESULTS_DIR = Path(os.getenv("RESULTS_DIR", str(RESULTS_DIR)))
 SCORES_FILE = RESULTS_DIR / "scores.json"
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "FitQuest_Physical_database")
 logger = get_activity_logger()
+
+STORAGE_ACTIVITIES = (
+    "high_knee_jump",
+    "shuttle_run",
+    "sprint_run_20m",
+    "long_jump",
+    "running",
+    "galloping",
+    "hopping",
+    "skipping",
+    "jumping",
+    "bead_threading",
+    "block_stacking",
+    "ball_catch",
+    "peg_board",
+    "visual_integration",
+    "beads_fm",
+    "agility_ladder",
+    "agility_test",
+)
 
 
 def mongo_uri_configured() -> bool:
@@ -101,7 +121,7 @@ def initialize_mongodb_schema() -> Dict[str, Any]:
             "video_files.files",
             "video_files.chunks",
         }
-        for activity in ("high_knee_jump", "shuttle_run", "sprint_run_20m", "long_jump"):
+        for activity in STORAGE_ACTIVITIES:
             required_collections.add(_activity_collection_name(activity))
             required_collections.add(_activity_vars_collection_name(activity))
             required_collections.add(_video_metadata_collection_name(activity))
@@ -118,7 +138,7 @@ def initialize_mongodb_schema() -> Dict[str, Any]:
         db["video_files.files"].create_index("metadata.candidate_id")
         db["video_files.files"].create_index("metadata.activity")
 
-        for activity in ("high_knee_jump", "shuttle_run", "sprint_run_20m", "long_jump"):
+        for activity in STORAGE_ACTIVITIES:
             db[_activity_collection_name(activity)].create_index("candidate_id")
             db[_activity_vars_collection_name(activity)].create_index("candidate_id")
             db[_video_metadata_collection_name(activity)].create_index("candidate_id")
@@ -288,12 +308,9 @@ def get_video_bytes_from_mongodb(
         db = client[resolved_db_name]
 
         metadata_collections = (
-            [_video_metadata_collection_name(activity)] if activity else [
-                _video_metadata_collection_name("high_knee_jump"),
-                _video_metadata_collection_name("shuttle_run"),
-                _video_metadata_collection_name("sprint_run_20m"),
-                _video_metadata_collection_name("long_jump"),
-            ]
+            [_video_metadata_collection_name(activity)]
+            if activity
+            else [_video_metadata_collection_name(item) for item in STORAGE_ACTIVITIES]
         )
 
         metadata_doc = None
@@ -479,4 +496,3 @@ def persist_record_to_mongodb(
             exc,
         )
         return status
-"""
